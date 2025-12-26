@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+.next
+
+# Build output
+dist
+build
+out
+.next
+
+# Generated files
+lib/backend/generated
+.graphql
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# Test coverage
+coverage
+
+# Package manager
+bun.lockb
+package-lock.json
+yarn.lock
