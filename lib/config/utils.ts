@@ -6,7 +6,7 @@
 
 import { sessionConfig } from './session'
 import { apiClient, getAuthUrl, getGraphQLUrl } from './api-client'
-import { config } from './env'
+import { config } from './private/config'
 
 /**
  * Get cookie options for Next.js response

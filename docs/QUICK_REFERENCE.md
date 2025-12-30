@@ -155,7 +155,7 @@ To add protection to a new route:
 2. **Access in code**:
 
    ```typescript
-   import { config } from "@/lib/config/env";
+   import { config } from "@/lib/config";
    const value = config.myNewVar;
    ```
 

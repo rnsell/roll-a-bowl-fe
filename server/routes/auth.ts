@@ -551,7 +551,7 @@ router.post('/logout', async (req: Request, res: Response) => {
 router.post('/request-password-reset', async (req: Request, res: Response) => {
   try {
     // Parse request body
-    const body = req.body
+    const body = req.body as RequestPasswordResetRequestBody
     const { email } = body
 
     logger.debug({ email }, 'Password reset request')
@@ -644,7 +644,7 @@ router.post('/request-password-reset', async (req: Request, res: Response) => {
 router.post('/reset-password', async (req: Request, res: Response) => {
   try {
     // Parse request body
-    const body = req.body
+    const body = req.body as ResetPasswordRequestBody
     const { token, newPassword } = body
 
     logger.debug({}, 'Password reset attempt')

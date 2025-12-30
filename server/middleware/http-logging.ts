@@ -55,6 +55,9 @@ export function httpLoggingMiddleware(req: Request, res: Response, next: NextFun
       statusCode,
       durationMs: duration,
       ip,
+      responseBody: responseBody ? (typeof responseBody === 'string' && responseBody.length > 500 
+        ? responseBody.substring(0, 500) + '...' 
+        : responseBody) : undefined,
     }
 
     // Log based on status code

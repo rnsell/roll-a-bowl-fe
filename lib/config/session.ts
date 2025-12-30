@@ -4,7 +4,7 @@
  * Provides type-safe configuration for session management.
  */
 
-import { config } from './env'
+import { config } from './private/config'
 
 export interface SessionConfig {
   cookieName: string

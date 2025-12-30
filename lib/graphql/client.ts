@@ -8,11 +8,27 @@
  */
 
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
-import { createLogger } from '@/lib/config/logging'
+import { createLogger } from '@/lib/common/logger'
 import { map, catchError } from 'rxjs'
 import { throwError } from 'rxjs'
 
-const logger = createLogger('ApolloClient')
+// Get debug mode - works on both server and client
+const getDebugMode = (): boolean => {
+  if (typeof window === 'undefined') {
+    // Server-side: access private config
+    try {
+      const { config } = require('@/lib/config/private/config')
+      return config.debugMode || false
+    } catch {
+      return false
+    }
+  }
+  // Client-side: check for NEXT_PUBLIC_DEBUG_MODE or use default
+  const debugEnv = process.env.NEXT_PUBLIC_DEBUG_MODE
+  return debugEnv === 'true' || debugEnv === '1' || false
+}
+
+const logger = createLogger('ApolloClient', getDebugMode())
 
 // ============================================================================
 // HTTP LINK (connects to our GraphQL proxy)

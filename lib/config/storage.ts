@@ -4,7 +4,7 @@
  * Provides type-safe configuration for session storage backends.
  */
 
-import { config } from './env'
+import { config } from './private/config'
 
 export type StorageType = 'memory' | 'redis' | 'database'
 

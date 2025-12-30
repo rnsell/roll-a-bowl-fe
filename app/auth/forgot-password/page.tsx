@@ -45,31 +45,31 @@ export default function ForgotPasswordPage() {
   // Success state
   if (success) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4">
+      <main className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="w-full max-w-md">
           {/* Success Card */}
-          <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-8 border border-white border-opacity-20 shadow-xl">
+          <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
             {/* Success Icon */}
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-purple-500 bg-opacity-20 border-2 border-purple-400 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-primary/20 border-2 border-primary/40 rounded-full flex items-center justify-center">
                 <span className="text-4xl">📧</span>
               </div>
             </div>
 
             {/* Header */}
             <div className="text-center mb-6">
-              <h1 className="text-3xl font-bold text-white mb-2">Check Your Email</h1>
-              <p className="text-purple-200">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Check Your Email</h1>
+              <p className="text-muted-foreground">
                 If an account exists with that email, you will receive a password reset link.
               </p>
             </div>
 
             {/* Instructions */}
-            <div className="bg-white bg-opacity-5 border border-white border-opacity-10 rounded-lg p-4 mb-6">
-              <p className="text-white text-sm leading-relaxed mb-2">
+            <div className="bg-muted border border-border rounded-lg p-4 mb-6">
+              <p className="text-foreground text-sm leading-relaxed mb-2">
                 Please check your inbox and click the password reset link to set a new password.
               </p>
-              <p className="text-white text-sm leading-relaxed">
+              <p className="text-foreground text-sm leading-relaxed">
                 If you don&apos;t see the email, check your spam folder.
               </p>
             </div>
@@ -85,7 +85,7 @@ export default function ForgotPasswordPage() {
             <div className="space-y-3">
               <Link
                 href="/auth/login"
-                className="block w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg text-center"
+                className="block w-full px-4 py-3 bg-primary hover:bg-primary/90 text-foreground font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg text-center"
               >
                 Back to Login
               </Link>
@@ -94,7 +94,7 @@ export default function ForgotPasswordPage() {
                   setSuccess(false)
                   setEmail('')
                 }}
-                className="w-full px-4 py-3 bg-white bg-opacity-10 hover:bg-opacity-20 text-white font-medium rounded-lg transition-all border border-white border-opacity-20"
+                className="w-full px-4 py-3 bg-border hover:bg-opacity-20 text-foreground font-medium rounded-lg transition-all border border-input"
               >
                 Send Another Reset Email
               </button>
@@ -107,22 +107,22 @@ export default function ForgotPasswordPage() {
 
   // Request form
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4">
+    <main className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Card */}
-        <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-8 border border-white border-opacity-20 shadow-xl">
+        <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Forgot Password?</h1>
-            <p className="text-purple-200">
+            <h1 className="text-3xl font-bold text-foreground mb-2">Forgot Password?</h1>
+            <p className="text-muted-foreground">
               Enter your email and we&apos;ll send you a reset link
             </p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-40 rounded-lg">
-              <p className="text-red-200 text-sm font-medium">{error}</p>
+            <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+              <p className="text-destructive text-sm font-medium">{error}</p>
             </div>
           )}
 
@@ -130,7 +130,7 @@ export default function ForgotPasswordPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                 Email Address
               </label>
               <input
@@ -140,7 +140,7 @@ export default function ForgotPasswordPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 disabled={isLoading}
-                className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-purple-200 placeholder-opacity-50 focus:outline-none focus:border-opacity-40 focus:bg-opacity-20 transition-all disabled:opacity-50"
+                className="w-full px-4 py-3 bg-border border border-input rounded-lg text-foreground placeholder-muted-foreground placeholder-opacity-50 focus:outline-none focus:border-opacity-40 focus:bg-opacity-20 transition-all disabled:opacity-50"
               />
             </div>
 
@@ -148,7 +148,7 @@ export default function ForgotPasswordPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg"
+              className="w-full px-4 py-3 bg-primary hover:bg-primary/90 text-foreground font-semibold rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
@@ -163,16 +163,16 @@ export default function ForgotPasswordPage() {
 
           {/* Divider */}
           <div className="my-6 flex items-center">
-            <div className="flex-1 h-px bg-white bg-opacity-10"></div>
-            <span className="px-3 text-white text-opacity-50 text-sm">or</span>
-            <div className="flex-1 h-px bg-white bg-opacity-10"></div>
+            <div className="flex-1 h-px bg-border"></div>
+            <span className="px-3 text-muted-foreground text-sm">or</span>
+            <div className="flex-1 h-px bg-border"></div>
           </div>
 
           {/* Footer Links */}
           <div className="text-center">
             <Link
               href="/auth/login"
-              className="text-purple-300 hover:text-purple-200 transition-colors text-sm font-medium"
+              className="text-primary hover:text-muted-foreground transition-colors text-sm font-medium"
             >
               ← Back to Login
             </Link>
@@ -180,8 +180,8 @@ export default function ForgotPasswordPage() {
         </div>
 
         {/* Info */}
-        <div className="mt-8 text-center text-white text-opacity-60 text-sm">
-          <p>Remember your password? <Link href="/auth/login" className="text-purple-300 hover:text-purple-200">Sign in</Link></p>
+        <div className="mt-8 text-center text-muted-foreground text-sm">
+          <p>Remember your password? <Link href="/auth/login" className="text-primary hover:text-muted-foreground">Sign in</Link></p>
         </div>
       </div>
     </main>

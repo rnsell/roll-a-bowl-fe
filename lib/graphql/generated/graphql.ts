@@ -18,10 +18,62 @@ export type Scalars = {
   DateTime: { input: string; output: string; }
 };
 
+export type CreateRecipeInput = {
+  instructions?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createRecipe: RecipeType;
+  deleteRecipe: Scalars['Boolean']['output'];
+  updateRecipe: RecipeType;
+};
+
+
+export type MutationCreateRecipeArgs = {
+  input: CreateRecipeInput;
+};
+
+
+export type MutationDeleteRecipeArgs = {
+  slug: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateRecipeArgs = {
+  input: UpdateRecipeInput;
+  slug: Scalars['String']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   me?: Maybe<UserProfile>;
+  recipe?: Maybe<RecipeType>;
+  recipes: Array<RecipeType>;
   user?: Maybe<UserProfile>;
+};
+
+
+export type QueryRecipeArgs = {
+  slug: Scalars['String']['input'];
+};
+
+export type RecipeType = {
+  __typename?: 'RecipeType';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['Int']['output'];
+  instructions?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  tenantId: Scalars['Int']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  userId: Scalars['Int']['output'];
+};
+
+export type UpdateRecipeInput = {
+  instructions?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UserProfile = {
@@ -49,5 +101,11 @@ export type GetCurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCurrentUserQuery = { __typename?: 'Query', me?: { __typename?: 'UserProfile', id: number, email: string, firstName: string, lastName: string, fullName: string, emailVerified: boolean, status: UserStatus, tenantId: number, createdAt: string, updatedAt: string } | null };
 
+export type GetRecipesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRecipesQuery = { __typename?: 'Query', recipes: Array<{ __typename?: 'RecipeType', id: number, name: string, slug: string, instructions?: string | null, createdAt: string, updatedAt: string, tenantId: number, userId: number }> };
+
 
 export const GetCurrentUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCurrentUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"tenantId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<GetCurrentUserQuery, GetCurrentUserQueryVariables>;
+export const GetRecipesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecipes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recipes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"instructions"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"tenantId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<GetRecipesQuery, GetRecipesQueryVariables>;

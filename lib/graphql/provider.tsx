@@ -3,15 +3,15 @@
 /**
  * Apollo Provider Wrapper
  * 
- * Currently not used - Apollo Client is used directly with its query() method.
- * This file can be removed or used if we want to add hooks-based queries later.
+ * Provides Apollo Client context to the app for useSuspenseQuery and other hooks
  */
 
 import { ReactNode } from 'react'
+import { ApolloProvider } from '@apollo/client/react'
+import { apolloClient } from './client'
 
 export function ApolloWrapper({ children }: { children: ReactNode }): ReactNode {
-  // Apollo Client is now used directly without a provider wrapper
-  return <>{children}</>
+  return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
 }
 
 export default ApolloWrapper

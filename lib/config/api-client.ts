@@ -4,7 +4,7 @@
  * Provides type-safe configuration for API client initialization.
  */
 
-import { config } from './env'
+import { config } from './private/config'
 
 export interface ApiClientConfig {
   baseUrl: string

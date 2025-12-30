@@ -31,7 +31,7 @@ function parseSessionIdFromCookie(cookieHeader: string | undefined): string | nu
 /**
  * Express middleware to validate and inject session
  */
-export async function sessionMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function sessionMiddleware(req: Request, _res: Response, next: NextFunction) {
   try {
     // Parse session ID from cookies
     const cookieHeader = req.headers.cookie

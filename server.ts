@@ -8,13 +8,17 @@
 import express, { Express, Request, Response } from 'express'
 import next from 'next'
 import { validateTenantOnStartup } from './lib/startup/tenant-validation'
-import { createLogger } from './lib/config/logging'
+import { initializeLogging, createServerLogger } from './lib/config/logging'
 import sessionMiddleware from './server/middleware/session'
 import httpLoggingMiddleware from './server/middleware/http-logging'
 import authRoutes from './server/routes/auth'
 import graphqlRoutes from './server/routes/graphql'
 
-const logger = createLogger('Server')
+// Initialize universal logger with Pino for server-side
+initializeLogging()
+
+// Use server logger for server.ts (can also use createLogger from @/lib/common/logger)
+const logger = createServerLogger('Server')
 
 const port = parseInt(process.env.PORT || '4000', 10)
 const dev = process.env.NODE_ENV !== 'production'

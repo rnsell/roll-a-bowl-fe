@@ -15,9 +15,11 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 type Documents = {
     "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n": typeof types.GetCurrentUserDocument,
+    "\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n": typeof types.GetRecipesDocument,
 };
 const documents: Documents = {
     "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n": types.GetCurrentUserDocument,
+    "\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n": types.GetRecipesDocument,
 };
 
 /**
@@ -38,6 +40,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n"): (typeof documents)["\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

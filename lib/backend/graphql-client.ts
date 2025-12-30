@@ -6,7 +6,7 @@
  */
 
 import { getGraphQLUrl } from '@/lib/config/api-client'
-import { config } from '@/lib/config/env'
+import { config } from '@/lib/config/private/config'
 import { createLogger } from '@/lib/config/logging'
 
 const logger = createLogger('GraphQLClient')

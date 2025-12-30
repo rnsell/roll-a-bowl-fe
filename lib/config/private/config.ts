@@ -1,5 +1,8 @@
 /**
- * Environment Configuration
+ * Private Server Configuration
+ * 
+ * ⚠️ WARNING: This file contains sensitive configuration that must NEVER be exposed to the client.
+ * Only use in server-side code (API routes, server components, middleware).
  * 
  * Centralized configuration loader with validation and type safety.
  * All environment variables are validated at startup to catch missing config early.
@@ -84,7 +87,7 @@ function loadEnvNumber(key: string, defaultValue: number): number {
 
 export const config: EnvironmentConfig = {
   // API Configuration (REQUIRED)
-  apiBaseUrl: loadEnvVar('NEXT_PUBLIC_API_BASE_URL', true),
+  apiBaseUrl: loadEnvVar('API_BASE_URL', true),
   apiKey: loadEnvVar('API_KEY', true),
   apiRequestTimeout: loadEnvNumber('API_REQUEST_TIMEOUT', 30000),
 
