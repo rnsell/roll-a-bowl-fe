@@ -18,16 +18,78 @@ export type Scalars = {
   DateTime: { input: string; output: string; }
 };
 
+export type AddRecipeToMealPlanInput = {
+  date: Scalars['String']['input'];
+  mealType: Scalars['String']['input'];
+  recipeSlug: Scalars['String']['input'];
+};
+
+export type ClearMealSlotInput = {
+  date: Scalars['String']['input'];
+  mealType: Scalars['String']['input'];
+};
+
 export type CreateRecipeInput = {
   instructions?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
 };
 
+/** A recipe scheduled for a specific date and meal type */
+export type MealPlanEntryType = {
+  __typename?: 'MealPlanEntryType';
+  /** Timestamp when entry was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** Date of the meal plan entry (ISO 8601 format: YYYY-MM-DD) */
+  date: Scalars['String']['output'];
+  /** Unique identifier for the meal plan entry */
+  id: Scalars['Int']['output'];
+  /** Type of meal (breakfast, lunch, dinner, or snacks) */
+  mealType: Scalars['String']['output'];
+  /** Recipe scheduled for this meal slot */
+  recipe: RecipeType;
+  /** Timestamp when entry was last updated */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type MealPlanInput = {
+  date: Scalars['String']['input'];
+};
+
+export type MealPlanRangeInput = {
+  endDateInclusive: Scalars['String']['input'];
+  startDateInclusive: Scalars['String']['input'];
+};
+
+/** Meal plan entries grouped by date */
+export type MealPlanType = {
+  __typename?: 'MealPlanType';
+  /** Date for this meal plan (ISO 8601 format: YYYY-MM-DD) */
+  date: Scalars['String']['output'];
+  /** All meal plan entries for this date (may be empty if no recipes scheduled) */
+  entries: Array<MealPlanEntryType>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Add a recipe to a specific meal slot. Returns error if recipe already scheduled in that slot. */
+  addRecipeToMealPlan: MealPlanEntryType;
+  /** Remove all recipes from a specific meal slot. Returns count of entries removed. */
+  clearMealSlot: Scalars['Int']['output'];
   createRecipe: RecipeType;
   deleteRecipe: Scalars['Boolean']['output'];
+  /** Remove a specific recipe from a meal slot. Returns true if removed, false if not found. */
+  removeRecipeFromMealPlan: Scalars['Boolean']['output'];
   updateRecipe: RecipeType;
+};
+
+
+export type MutationAddRecipeToMealPlanArgs = {
+  input: AddRecipeToMealPlanInput;
+};
+
+
+export type MutationClearMealSlotArgs = {
+  input: ClearMealSlotInput;
 };
 
 
@@ -41,6 +103,11 @@ export type MutationDeleteRecipeArgs = {
 };
 
 
+export type MutationRemoveRecipeFromMealPlanArgs = {
+  input: RemoveRecipeFromMealPlanInput;
+};
+
+
 export type MutationUpdateRecipeArgs = {
   input: UpdateRecipeInput;
   slug: Scalars['String']['input'];
@@ -49,9 +116,23 @@ export type MutationUpdateRecipeArgs = {
 export type Query = {
   __typename?: 'Query';
   me?: Maybe<UserProfile>;
+  /** Get all meal plan entries for a specific date */
+  mealPlan: Array<MealPlanEntryType>;
+  /** Get meal plan entries for a date range (up to 60 days), grouped by date. Returns all dates in range, including empty days. */
+  mealPlanRange: Array<MealPlanType>;
   recipe?: Maybe<RecipeType>;
   recipes: Array<RecipeType>;
   user?: Maybe<UserProfile>;
+};
+
+
+export type QueryMealPlanArgs = {
+  input: MealPlanInput;
+};
+
+
+export type QueryMealPlanRangeArgs = {
+  input: MealPlanRangeInput;
 };
 
 
@@ -69,6 +150,12 @@ export type RecipeType = {
   tenantId: Scalars['Int']['output'];
   updatedAt: Scalars['DateTime']['output'];
   userId: Scalars['Int']['output'];
+};
+
+export type RemoveRecipeFromMealPlanInput = {
+  date: Scalars['String']['input'];
+  mealType: Scalars['String']['input'];
+  recipeSlug: Scalars['String']['input'];
 };
 
 export type UpdateRecipeInput = {
