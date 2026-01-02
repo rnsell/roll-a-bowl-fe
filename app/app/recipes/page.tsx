@@ -60,13 +60,10 @@ function RecipesList() {
                 {recipe.instructions}
               </CardDescription>
             )}
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
-              <span>Created: {new Date(recipe.createdAt).toLocaleDateString()}</span>
-            </div>
             <Separator className="my-4" />
             <div className="flex justify-end">
               <Button asChild variant="outline" size="sm">
-                <Link href={`/recipes/${recipe.slug}`}>View Recipe</Link>
+                <Link href={`/app/recipes/${recipe.slug}`}>View Recipe</Link>
               </Button>
             </div>
           </CardContent>
@@ -98,11 +95,16 @@ export default function RecipesPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="mb-8">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Recipes</h2>
-          <p className="text-muted-foreground text-lg">
-            Discover delicious bowl recipes
-          </p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Recipes</h2>
+            <p className="text-muted-foreground text-lg">
+              Discover delicious bowl recipes
+            </p>
+          </div>
+          <Button asChild>
+            <Link href="/app/recipes/create">Create Recipe</Link>
+          </Button>
         </div>
 
         <Suspense

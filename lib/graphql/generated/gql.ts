@@ -14,12 +14,20 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n": typeof types.GetCurrentUserDocument,
+    "\n  query GetRecipeBySlug($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n": typeof types.GetRecipeBySlugDocument,
+    "\n  mutation CreateRecipe($input: CreateRecipeInput!) {\n    createRecipe(input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n": typeof types.CreateRecipeDocument,
+    "\n  query GetRecipeForEdit($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n": typeof types.GetRecipeForEditDocument,
+    "\n  mutation UpdateRecipe($slug: String!, $input: UpdateRecipeInput!) {\n    updateRecipe(slug: $slug, input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n": typeof types.UpdateRecipeDocument,
     "\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n": typeof types.GetRecipesDocument,
+    "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n": typeof types.GetCurrentUserDocument,
 };
 const documents: Documents = {
-    "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n": types.GetCurrentUserDocument,
+    "\n  query GetRecipeBySlug($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n": types.GetRecipeBySlugDocument,
+    "\n  mutation CreateRecipe($input: CreateRecipeInput!) {\n    createRecipe(input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n": types.CreateRecipeDocument,
+    "\n  query GetRecipeForEdit($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n": types.GetRecipeForEditDocument,
+    "\n  mutation UpdateRecipe($slug: String!, $input: UpdateRecipeInput!) {\n    updateRecipe(slug: $slug, input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n": types.UpdateRecipeDocument,
     "\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n": types.GetRecipesDocument,
+    "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n": types.GetCurrentUserDocument,
 };
 
 /**
@@ -39,11 +47,27 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n"];
+export function graphql(source: "\n  query GetRecipeBySlug($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n"): (typeof documents)["\n  query GetRecipeBySlug($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateRecipe($input: CreateRecipeInput!) {\n    createRecipe(input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  mutation CreateRecipe($input: CreateRecipeInput!) {\n    createRecipe(input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetRecipeForEdit($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  query GetRecipeForEdit($slug: String!) {\n    recipe(slug: $slug) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation UpdateRecipe($slug: String!, $input: UpdateRecipeInput!) {\n    updateRecipe(slug: $slug, input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateRecipe($slug: String!, $input: UpdateRecipeInput!) {\n    updateRecipe(slug: $slug, input: $input) {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n"): (typeof documents)["\n  query GetRecipes {\n    recipes {\n      id\n      name\n      slug\n      instructions\n      createdAt\n      updatedAt\n      tenantId\n      userId\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  query GetCurrentUser {\n    me {\n      id\n      email\n      firstName\n      lastName\n      fullName\n      emailVerified\n      status\n      tenantId\n      createdAt\n      updatedAt\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
